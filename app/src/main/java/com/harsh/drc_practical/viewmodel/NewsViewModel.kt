@@ -43,6 +43,7 @@ class NewsViewModel : ViewModel() {
                         APIResult.Error(IllegalStateException("Something went wrong."))
                 }
             } catch (e: Exception) {
+                e.printStackTrace()
                 newsLiveData.value = APIResult.Error(IllegalStateException("Something went wrong."))
             }
         }

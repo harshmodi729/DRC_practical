@@ -12,7 +12,7 @@ interface ApiInterface {
 
     //    https://newsapi.org/v2/top-headlines?sources=google-news&apiKey=9a0c8e375ada4198a26f7a52638c4b78
     @GET(APICONSTANT.HEADLINES)
-    fun getHeadLines(
+    suspend fun getHeadLines(
         @Query("sources") source: String,
         @Query("apiKey") apiKey: String
     ): ApiResponse<ArrayList<Article>>

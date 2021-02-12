@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiClient {
@@ -16,8 +17,8 @@ class ApiClient {
                 INSTANCE = Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create(Gson()))
-//                    .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-//                    .client(getHttpClient())
+                    .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
+                    .client(getHttpClient())
                     .build()
             }
             return INSTANCE!!
