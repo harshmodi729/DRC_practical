@@ -54,6 +54,5 @@ class WebViewActivity : AppCompatActivity() {
         }
 
         webView.loadUrl(newsUrl)
-        setContentView(webView)
     }
 }
