@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.harsh.drc_practical.R
 import com.harsh.drc_practical.adapter.NewsAdapter
+import com.harsh.drc_practical.base.Constants
 import com.harsh.drc_practical.base.Source
 import com.harsh.drc_practical.data.APIResult
 import com.harsh.drc_practical.extension.isInternetAvailable
@@ -33,8 +34,17 @@ class MainActivity : AppCompatActivity() {
         adapter = NewsAdapter(this)
         rvNews.adapter = adapter
 
-        adapter.onNewsClick = { item ->
-            startActivity(Intent(this, WebViewActivity::class.java).putExtra("news_data", item))
+        adapter.onNewsUrlClick = { newsUrl ->
+            startActivity(
+                Intent(this, WebViewActivity::class.java)
+                    .putExtra(Constants.NEWS_URL, newsUrl)
+            )
+        }
+        adapter.onNewsClick = {
+            startActivity(
+                Intent(this, NewsDetailActivity::class.java)
+                    .putExtra(Constants.NEWS_DATA, it)
+            )
         }
 
         newsViewModel.newsLiveData.observe(this, {
